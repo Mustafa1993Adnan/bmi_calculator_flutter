@@ -1,10 +1,21 @@
 import 'package:bmi_calculator_flutter/components/ReusableCard.dart';
-import 'package:bmi_calculator_flutter/screens/input_Page.dart';
 import 'package:flutter/material.dart';
 import '../components/bottom_button.dart';
 import '../constant.dart';
 
 class ResultPage extends StatelessWidget {
+  ResultPage(
+      {@required this.bmiCalNumber,
+      @required this.bmiResult,
+      @required this.bmiInterpretation,
+      this.gender,
+      this.age});
+  final String bmiCalNumber;
+  final String bmiResult;
+  final String bmiInterpretation;
+  final String gender;
+  final int age;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,19 +44,38 @@ class ResultPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('hkjdhaks', style: kResultTextStyle),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Your gender is: ' + gender,
+                        style: kSmallText,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Your age: ' + age.toString(),
+                        style: kSmallText,
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(bmiResult, style: kResultTextStyle),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                    '26.1',
+                    bmiCalNumber,
                     style: kResultNumberStyle,
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                    'You should lose weightYou should lose weightYou should lose weightYou should lose weightYou should lose weight',
+                    bmiInterpretation,
                     textAlign: TextAlign.center,
                     style: kResultMessageStyle,
                   )
@@ -55,8 +85,7 @@ class ResultPage extends StatelessWidget {
           ),
           BottomButton(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => InputPage()));
+              Navigator.pop(context);
             },
             buttonText: 'Re-Calculate',
           )

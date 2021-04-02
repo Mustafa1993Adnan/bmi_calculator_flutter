@@ -1,3 +1,4 @@
+import 'package:bmi_calculator_flutter/calculator_brain.dart';
 import 'package:bmi_calculator_flutter/screens/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,35 +18,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   GenderType selectedGender;
   int height = 180;
-  int weight = 50;
-  int age = 20;
-  // Color maleCardColor = inActiveCardColor;
-  // Color femaleCardColor = inActiveCardColor;
-  //
-  // void updateColor(GenderType genderParameter) {
-  //   genderParameter == GenderType.male
-  //       ? maleCardColor = activeCardColor
-  //       : femaleCardColor = activeCardColor;
-  //   genderParameter == GenderType.male
-  //       ? femaleCardColor = inActiveCardColor
-  //       : maleCardColor = inActiveCardColor;
-  //
-  //   // if (genderParameter == GenderType.male) {
-  //   //   if (maleCardColor == inActiveCardColor) {
-  //   //     maleCardColor = activeCardColor;
-  //   //     femaleCardColor = inActiveCardColor;
-  //   //   } else {
-  //   //     maleCardColor = inActiveCardColor;
-  //   //   }
-  //   // } else if (genderParameter == GenderType.female) {
-  //   //   if (femaleCardColor == inActiveCardColor) {
-  //   //     femaleCardColor = activeCardColor;
-  //   //     maleCardColor = inActiveCardColor;
-  //   //   } else {
-  //   //     femaleCardColor = inActiveCardColor;
-  //   //   }
-  //   // }
-  // }\
+  int weight = 65;
+  int age = 25;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -238,8 +212,21 @@ class _InputPageState extends State<InputPage> {
             ),
             BottomButton(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ResultPage()));
+                CalculatorBrain cal =
+                    new CalculatorBrain(weight: weight, height: height);
+
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ResultPage(
+                              bmiCalNumber: cal.bmiCalculation(),
+                              bmiResult: cal.getResult(),
+                              bmiInterpretation: cal.bmiInterpretation(),
+                              gender: selectedGender == GenderType.male
+                                  ? 'Male'
+                                  : 'Female',
+                              age: age,
+                            )));
               },
               buttonText: 'Calculate',
             )

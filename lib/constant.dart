@@ -21,3 +21,4 @@ const kResultMessageStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 20,
 );
+const kSmallText = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
