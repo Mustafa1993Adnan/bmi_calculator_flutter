@@ -48,11 +48,11 @@ class ResultPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Your gender is: ' + gender,
+                        'You selected: ' + gender,
                         style: kSmallText,
                       ),
                       SizedBox(
-                        width: 10,
+                        width: 5,
                       ),
                       Text(
                         'Your age: ' + age.toString(),
@@ -60,19 +60,10 @@ class ResultPage extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(bmiResult, style: kResultTextStyle),
-                  SizedBox(
-                    height: 10,
-                  ),
+                  Text(bmiResult.toUpperCase(), style: kResultTextStyle),
                   Text(
                     bmiCalNumber,
                     style: kResultNumberStyle,
-                  ),
-                  SizedBox(
-                    height: 10,
                   ),
                   Text(
                     bmiInterpretation,

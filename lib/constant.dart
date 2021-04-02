@@ -13,7 +13,7 @@ const kLargeButtonStyle = TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
 const kResultTitleStyle = TextStyle(
     color: Color(0xFFF1F0F0), fontWeight: FontWeight.w900, fontSize: 38);
 const kResultTextStyle = TextStyle(
-    color: Color(0xFFA31741), fontWeight: FontWeight.bold, fontSize: 20);
+    color: Color(0xFFAD3252), fontWeight: FontWeight.bold, fontSize: 30);
 const kResultNumberStyle = TextStyle(
     color: Color(0xFFF1F0F0), fontWeight: FontWeight.w900, fontSize: 100);
 const kResultMessageStyle = TextStyle(
