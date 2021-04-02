@@ -1,8 +1,11 @@
+import 'package:bmi_calculator_flutter/screens/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'IconContent.dart';
-import 'ReusableCard.dart';
-import 'constant.dart';
+import '../components/IconContent.dart';
+import '../components/ReusableCard.dart';
+import '../constant.dart';
+import '../components/bottom_button.dart';
+import '../components/round_icon_button.dart';
 
 enum GenderType { male, female }
 
@@ -15,6 +18,7 @@ class _InputPageState extends State<InputPage> {
   GenderType selectedGender;
   int height = 180;
   int weight = 50;
+  int age = 20;
   // Color maleCardColor = inActiveCardColor;
   // Color femaleCardColor = inActiveCardColor;
   //
@@ -188,35 +192,58 @@ class _InputPageState extends State<InputPage> {
                       ),
                     ),
                   ),
-                  Expanded(child: ReusableCard(color: kActiveCardColor))
+                  Expanded(
+                      child: ReusableCard(
+                    color: kActiveCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Age',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPress: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ))
                 ],
               ),
             ),
-            Container(
-              color: kBottomContainerColor,
-              margin: EdgeInsets.only(top: 10),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-              child: Center(child: Text("Calculator")),
+            BottomButton(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ResultPage()));
+              },
+              buttonText: 'Calculate',
             )
           ],
         ));
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({this.icon, this.onPress});
-  final IconData icon;
-  final Function onPress;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: onPress,
-      constraints: BoxConstraints.tightFor(width: 56, height: 56),
-      child: Icon(icon),
-      elevation: 6.0,
-      fillColor: Color(0XFF4c4f5e),
-      shape: CircleBorder(),
-    );
   }
 }
